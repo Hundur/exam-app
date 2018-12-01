@@ -26,7 +26,7 @@ public class GraphiteMetricsConfig {
         System.out.println(System.getenv("HOSTEDGRAPHITE_APIKEY"));
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-        Graphite graphite = new Graphite(new InetSocketAddress(System.getenv("GRAPHITE_HOST"), 2003));
+        Graphite graphite = new Graphite(new InetSocketAddress("https://webhooks.hostedgraphite.com/heroku//logs/?apikey="+System.getenv("HOSTEDGRAPHITE_APIKEY"), 2003));
         GraphiteReporter reporter = GraphiteReporter.forRegistry(registry).prefixedWith(System.getenv("HOSTEDGRAPHITE_APIKEY"))
                 .convertRatesTo(TimeUnit.SECONDS)
                 .convertDurationsTo(TimeUnit.MILLISECONDS)
@@ -34,6 +34,7 @@ public class GraphiteMetricsConfig {
                 .build(graphite);
 
         reporter.start(1, TimeUnit.SECONDS);
+        System.out.println("_________________________________________________________________:)))");
         return reporter;
     }
 }
