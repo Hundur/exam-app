@@ -26,7 +26,7 @@ public class GraphiteMetricsConfig {
         System.out.println(System.getenv("HOSTEDGRAPHITE_APIKEY"));
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-        Graphite graphite = new Graphite(new InetSocketAddress("ad6135e0.carbon.hostedgraphite.com", 2003));
+        Graphite graphite = new Graphite(new InetSocketAddress("69252e41.carbon.hostedgraphite.com", 2003));
         GraphiteReporter reporter = GraphiteReporter.forRegistry(registry).prefixedWith(System.getenv("HOSTEDGRAPHITE_APIKEY"))
                 .convertRatesTo(TimeUnit.SECONDS)
                 .convertDurationsTo(TimeUnit.MILLISECONDS)
