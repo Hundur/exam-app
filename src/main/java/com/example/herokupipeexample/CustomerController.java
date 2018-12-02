@@ -26,7 +26,7 @@ public class CustomerController {
     public String welcome() {
         System.out.println("Hello_______________________________________________________________________________________");
         registry.meter("welcome").mark();
-        return "Welcome to this small REST service. It will accept a GET on /list with a request parameter lastName, and a POST to / with a JSON payload with firstName and lastName as values.";
+        return "Welcome to this small REST service. TEST. It will accept a GET on /list with a request parameter lastName, and a POST to / with a JSON payload with firstName and lastName as values.";
     }
 
     @RequestMapping("/list")
