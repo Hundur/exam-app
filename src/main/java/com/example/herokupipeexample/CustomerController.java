@@ -3,7 +3,6 @@ package com.example.herokupipeexample;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,13 +36,16 @@ public class CustomerController {
 
     @RequestMapping("/list")
     public List<Customer> find(@RequestParam(value="lastName") String lastName) {
-        return customerRepository.findByLastName(lastName);
+        registry.timer("Getting customers").time();
+        List<Customer> list = customerRepository.findByLastName(lastName);
+        return list;
     }
 
     @PostMapping("/")
-    	Customer newCustomer(@RequestBody Customer customer) {
+    Customer newCustomer(@RequestBody Customer customer) {
         System.out.println(customer);
-    		return customerRepository.save(customer);
-    	}
+        registry.counter("Customer made").inc();
+        return customerRepository.save(customer);
+    }
 
 }

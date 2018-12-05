@@ -21,11 +21,6 @@ public class GraphiteMetricsConfig {
     @Bean
     public GraphiteReporter getReporter(MetricRegistry registry) {
 
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println(System.getenv("GRAPHITE_HOST"));
-        System.out.println(System.getenv("HOSTEDGRAPHITE_APIKEY"));
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------");
-
         Graphite graphite = new Graphite(new InetSocketAddress(System.getenv("GRAPHITE_HOST"), 2003));
         GraphiteReporter reporter = GraphiteReporter.forRegistry(registry).prefixedWith(System.getenv("HOSTEDGRAPHITE_APIKEY"))
                 .convertRatesTo(TimeUnit.SECONDS)
@@ -34,7 +29,6 @@ public class GraphiteMetricsConfig {
                 .build(graphite);
 
         reporter.start(1, TimeUnit.SECONDS);
-        System.out.println("_________________________________________________________________:)))");
         return reporter;
     }
 }
