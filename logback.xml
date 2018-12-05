@@ -11,4 +11,9 @@
             <level>INFO</level>
         </filter>
     </appender>
+
+    <root level="debug">
+        <!-- IMPORTANT: make sure to include this line, otherwise the appender won't be used -->
+        <appender-ref ref="LogzioLogbackAppender"/>
+    </root>
 </configuration>
