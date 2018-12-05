@@ -1,0 +1,14 @@
+<!-- Use debug=true here if you want to see output from the appender itself -->
+<!-- Use line=true here if you want to see the line of code that generated this log -->
+<configuration>
+    <!-- Use shutdownHook so that we can close gracefully and finish the log drain -->
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <appender name="LogzioLogbackAppender" class="io.logz.logback.LogzioLogbackAppender">
+        <token>$LOGZIO_TOKEN</token>
+        <logzioType>myAwesomeType</logzioType>
+        <logzioUrl>https://listener-eu.logz.io:8071</logzioUrl>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+</configuration>
